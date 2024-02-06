@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -48,6 +49,12 @@ public class Main {
                     Cell cell = row.getCell(1);
                     String cellValue = dataFormatter.formatCellValue(cell);
 
+                    // Kontrola typu hodnoty
+                   // if (cell.getCellType() == CellType.NUMERIC) {
+
+                        // Pokud je hodnota cele cislo, vypiseme ji
+                        //int integer = (int) cell.getNumericCellValue();
+
                     try {
                         int integer = Integer.parseInt(cellValue);
                         if (IsPrime.isPrime(integer)) {
@@ -58,7 +65,11 @@ public class Main {
                     }
                     catch (NumberFormatException e) {
                         // Ignorujeme řádky neobsahující celé číslo
+
                     }
+
+
+                   // }
                 }
 
                 logger.info("Ukonceno cteni souboru, zaviram soubor!");
@@ -74,5 +85,6 @@ public class Main {
             logger.info("Soubor neexistuje, nebo je spatne zadana cesta k souboru!");
             System.out.println("Soubor neexistuje, nebo je spatne zadana cesta k souboru!");
         }
+
     }
 }
